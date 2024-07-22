@@ -1,6 +1,8 @@
 from django.db import models
 
-# Create your models here.
+from django.urls import reverse
+
+
 class Category(models.Model):
     name = models.CharField(max_length=250, db_index=True)
 
@@ -14,6 +16,10 @@ class Category(models.Model):
     def __str__(self):
 
         return self.name
+
+    # def get_absolute_url(self):
+        
+    #     return reverse('list-catrgory', args=[self.slug])
     
 
     
@@ -39,6 +45,11 @@ class Product(models.Model):
     def __str__(self):
 
         return self.title
+    
+
+    def get_absolute_url(self):
+
+        return reverse('product-info', args=[self.slug])
     
 
 
