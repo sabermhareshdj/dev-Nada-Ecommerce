@@ -4,9 +4,11 @@ class Cart():
     
     def __init__(self, request):
 
+        self.session = request.session
+
         # Returning user - obtain his/her existing session
         
-        self.session = request.session
+        
         cart = self.session.get('session_key')
 
         # New user - generate a new session
@@ -20,14 +22,19 @@ class Cart():
 
     def add(self, product, product_qty):
 
-        product_id = str(product_id)
+        product.id = str(product.id)
 
-        if product_id in self.cart:
+        if product.id in self.cart:
 
-            self.cart[product_id]['qty'] = product_qty
+            self.cart[product.id]['qty'] = product_qty
 
         else:
 
-            self.cart[product_id] = {'price': str(product.price), 'qty': product_qty}
+            self.cart[product.id] = {'price': str(product.price), 'qty': product_qty}
 
         self.session.modified = True
+
+
+    def __len__(self):
+
+        return sum(item['qty'] for item in self.cart.values())

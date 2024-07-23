@@ -115,8 +115,12 @@
 
             },
             success: function(json){
+                
+
+                decoment.getElementById("cart-qty").textContent = json.qty
 
             },
+            
             error: function(xhr, errmsg, err){
 
             }
@@ -124,7 +128,7 @@
         });
 
     })
-    
+
 </script>
 
 {% endblock %}
