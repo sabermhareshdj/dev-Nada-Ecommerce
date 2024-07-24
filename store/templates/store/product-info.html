@@ -97,6 +97,7 @@
 
 </div>
 
+//Add button
 <script>
 
     $(document).on('click', '#add-button', function(e){
@@ -114,8 +115,11 @@
                 action: 'post',
 
             },
+
+            
             success: function(json){
                 
+                location.reload();
 
                 decoment.getElementById("cart-qty").textContent = json.qty
 
